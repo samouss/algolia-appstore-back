@@ -1,4 +1,8 @@
-export const adder = (a, b) => a + b;
-export const logger = (...args) => console.log(...args);
+import express from 'express';
 
-logger('Hello World!');
+const app = express();
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+  console.log(`Server is listen on port ${port}`);
+});

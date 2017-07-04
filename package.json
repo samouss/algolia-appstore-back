@@ -37,6 +37,8 @@
     "jest": "20.0.4",
     "nodemon": "1.11.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "4.15.3"
+  },
   "jest": {}
 }
