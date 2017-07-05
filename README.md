@@ -18,19 +18,13 @@ npm install
 - For run the dev application and launch a server in watch mode on `localhost:8080`:
 
 ```
-npm run babel:watch
-```
-
-And then in another tab:
-
-```
-npm run nodemon
+npm start
 ```
 
 - For run the production application and launch a server on `localhost:8080`:
 
 ```
-npm run build && npm start
+npm run build && npm run serve
 ```
 
 ## Run the test for the application
