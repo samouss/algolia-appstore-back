@@ -1,8 +1,8 @@
 import Joi from 'joi';
 import { v4 } from 'uuid';
 import { ALGOLIA_APPS_INDEX_NAME } from 'configuration';
-import client from 'core/algolia';
 import { validateSchemaToPromise } from 'core/validation';
+import client from 'core/algolia';
 
 const index = client.initIndex(ALGOLIA_APPS_INDEX_NAME);
 
@@ -22,4 +22,8 @@ export const validate = validateSchemaToPromise(schema, {
 
 export const create = body => {
   return index.addObject(body, v4()).then(pending => pending.objectID);
+};
+
+export const remove = id => {
+  return index.deleteObject(id);
 };
