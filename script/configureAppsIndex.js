@@ -22,11 +22,13 @@ index.setSettings({
   ],
 }).then(() => {
   console.log();
-  console.log(chalk`{green A change for the settings of {bold ${APPS_INDEX_NAME}} has been registered...}`);
+  console.log(chalk`{green > Success!}`);
+  console.log(chalk`> Settings of "{bold ${APPS_INDEX_NAME}}" will change in couple of seconds.`);
   console.log();
 }).catch(error => {
   console.log();
-  console.log(chalk`{red Oops, an error has occurred during configuration of {bold ${APPS_INDEX_NAME}} index.}`);
+  console.log(chalk`{red > Error!}`);
+  console.log(chalk`> Oops, an error has occurred during configuration of "{bold ${APPS_INDEX_NAME}}".`);
   console.log();
   console.log(error);
   console.log();
