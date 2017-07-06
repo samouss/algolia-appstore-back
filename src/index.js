@@ -15,7 +15,7 @@ app.use(`${basePath}/apps`, apps);
 
 // 404 fallback
 app.use((req, res) => {
-  res.status(404).json();
+  res.status(404).json({ name: 'NotFound' });
 });
 
 app.listen(port, () => {
