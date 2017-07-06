@@ -4,4 +4,5 @@
 
 # Files
 npm-debug.log
+data*.json
 .DS_Store
