@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { API_VERSION } from 'configuration';
-import apps from './apps';
+import apps from './apps/routes';
 
 const app = express();
 const port = process.env.PORT || 8080;
