@@ -8,6 +8,9 @@ const app = express();
 const port = process.env.PORT || 8080;
 const basePath = `/api/${API_VERSION}`;
 
+// Configuration
+app.disable('x-powered-by');
+
 // Middlewares
 app.use(bodyParser.json());
 app.use(cors());
