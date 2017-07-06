@@ -5,6 +5,12 @@
     "es2017"
   ],
   "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "configuration": "./config.json",
+      }
+    }],
     "transform-object-rest-spread",
   ]
 }

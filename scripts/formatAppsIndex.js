@@ -3,8 +3,8 @@ import path from 'path';
 import chalk from 'chalk';
 import yargs from 'yargs';
 import { v4 } from 'uuid';
+import { ALGOLIA_APPS_INDEX_NAME } from 'configuration';
 import { formatDataWith } from './utils';
-import { ALGOLIA_APPS_INDEX_NAME } from '../config.json';
 
 const { input, output } = yargs.argv;
 

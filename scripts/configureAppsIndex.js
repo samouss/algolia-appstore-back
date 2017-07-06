@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import algoliasearch from 'algoliasearch';
-import { ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_APPS_INDEX_NAME } from '../config.json';
+import { ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_APPS_INDEX_NAME } from 'configuration';
 
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 const index = client.initIndex(ALGOLIA_APPS_INDEX_NAME);
