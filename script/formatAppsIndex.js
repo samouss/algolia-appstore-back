@@ -1,13 +1,20 @@
 import fs from 'fs';
 import path from 'path';
+import chalk from 'chalk';
 import { flowRight } from 'lodash';
 import { v4 } from 'uuid';
+import { APPS_INDEX_NAME } from '../config.json';
 
 const getRawData = path => {
   try {
     return fs.readFileSync(path);
-  } catch (e) {
-    throw new Error('File "data.json" is expected to be on root folder.');
+  } catch (error) {
+    console.log();
+    console.log(chalk`{red Oops, file "data.json" is expected to be in root folder.}`);
+    console.log();
+    console.log(error);
+    console.log();
+    process.exit(1);
   }
 };
 
@@ -37,4 +44,6 @@ fs.writeFileSync(
   JSON.stringify(formattedData, null, 2),
 );
 
-console.log('DONE.');
+console.log();
+console.log(chalk`{green JSON file has been formatted for "{bold ${APPS_INDEX_NAME}}" index.}`);
+console.log();
