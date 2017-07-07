@@ -4,8 +4,6 @@ import { ALGOLIA_APPS_INDEX_NAME } from 'configuration';
 import { validateSchemaToPromise } from 'core/validation';
 import client, { handleError } from 'core/algolia';
 
-const index = client.initIndex(ALGOLIA_APPS_INDEX_NAME);
-
 const schema = Joi.object({
   category: Joi.string().required(),
   rating: Joi.number().min(0).max(5).required(),
@@ -16,24 +14,26 @@ const schema = Joi.object({
   price: Joi.string().required(),
 });
 
+const index = client.initIndex(ALGOLIA_APPS_INDEX_NAME);
+
 export const validate = validateSchemaToPromise(schema, {
   abortEarly: false,
 });
 
 export const create = (body, idx = index) => {
-  return idx.addObject(body, v4())
-    .then(pending => {
-      client.destroy();
+  return idx.addObject(body, v4()).then(pending => {
+    client.destroy();
 
-      return pending.objectID;
-    })
-    .catch(error => handleError(client, error));
+    return pending.objectID;
+  }).catch(error => {
+    return handleError(client, error);
+  });
 };
 
 export const remove = (id, idx = index) => {
-  return idx.deleteObject(id)
-    .then(() => {
-      client.destroy();
-    })
-    .catch(error => handleError(client, error));
+  return idx.deleteObject(id).then(() => {
+    client.destroy();
+  }).catch(error => {
+    return handleError(client, error);
+  });
 };

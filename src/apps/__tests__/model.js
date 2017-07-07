@@ -21,6 +21,26 @@ describe('apps', () => {
       expect(client.initIndex).toHaveBeenCalledWith('indexName');
     });
 
+    describe('validate', () => {
+      it('expect to pass validation', () => {
+        expect.assertions(1);
+
+        const body = {
+          category: 'Games',
+          rating: 3,
+          name: 'Cut The Rope',
+          image: 'https://api.com/images',
+          link: 'https://api.com/link',
+          ratingCount: 1230,
+          price: '0 USD',
+        };
+
+        return model.validate(body).then(actual => {
+          expect(actual).toEqual(body);
+        });
+      });
+    });
+
     describe('create', () => {
       it('expect to return a resolved promise with created objectID', () => {
         expect.assertions(3);
