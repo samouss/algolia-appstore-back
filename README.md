@@ -5,6 +5,8 @@
 
 Micro back end to interact with Algolia indexes, built with Express, Babel, Jest.
 
+Live API: [https://algolia-appstore-back.herokuapp.com](https://algolia-appstore-back.herokuapp.com) (it's a free dyno so be patient for the boot time 🙂)
+
 ## Installation
 
 Clone the repository and then run the following command:
