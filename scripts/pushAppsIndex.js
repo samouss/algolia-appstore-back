@@ -27,12 +27,16 @@ console.log(chalk`> Upload of "{bold ${ALGOLIA_APPS_INDEX_NAME}}" begin...`);
 console.log();
 
 index.addObjects(data).then(() => {
+  client.destroy();
+
   console.log();
   console.log(chalk`{green > Success!}`);
   console.log(chalk`> Records of "{bold ${ALGOLIA_APPS_INDEX_NAME}}" will change in couple of seconds.`);
   console.log(`> ${inputPath}`);
   console.log();
 }).catch(error => {
+  client.destroy();
+
   console.log();
   console.log(chalk`{red > Error!}`);
   console.log(chalk`> Oops, an error has occurred during upload of "{bold ${ALGOLIA_APPS_INDEX_NAME}}".`);
