@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Webpack React Starter with Babel, ESLint, Mocha, Chai, Sinon, Enzyme",
   "scripts": {
-    "start": "nodemon src --exec babel-node",
+    "start": "nodemon src/server.js --exec babel-node",
     "build": "npm run clean && npm run lint && npm run babel",
-    "serve": "node dist",
+    "serve": "node dist/server.js",
     "clean": "rm -rf dist",
     "lint": "eslint src",
     "babel": "babel src --out-dir dist --ignore __tests__",
