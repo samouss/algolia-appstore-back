@@ -1,3 +1,4 @@
+import { createFakeRequest, createFakeResponse } from 'test/route';
 import * as model from '../model';
 import * as routes from '../routes';
 
@@ -6,13 +7,6 @@ jest.mock('../model', () => ({
   create: jest.fn(),
   remove: jest.fn(),
 }));
-
-const createFakeRequest = x => x;
-const createFakeResponse = () => ({
-  status: jest.fn().mockReturnThis(),
-  json: jest.fn().mockReturnThis(),
-  send: jest.fn().mockReturnThis(),
-});
 
 describe('apps', () => {
   describe('routes', () => {

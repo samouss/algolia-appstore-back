@@ -9,6 +9,7 @@
       "root": ["./src"],
       "alias": {
         "configuration": "./config.json",
+        "test": "./test",
       }
     }],
     "transform-object-rest-spread",
