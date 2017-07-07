@@ -23,7 +23,7 @@ npm install
 cp .env.dist .env
 ```
 
-Fill the missing property `ALGOLIA_APP_ID` and `ALGOLIA_API_KEY` (grab this informations from your account).  
+Fill the missing property `ALGOLIA_APP_ID` and `ALGOLIA_API_KEY` ([from your account](https://www.algolia.com)).  
 Then you can launch the server in watch mode on `localhost:8080`:
 
 ```
