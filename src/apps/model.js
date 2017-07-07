@@ -20,10 +20,10 @@ export const validate = validateSchemaToPromise(schema, {
   abortEarly: false,
 });
 
-export const create = body => {
-  return index.addObject(body, v4()).then(pending => pending.objectID);
+export const create = (body, idx = index) => {
+  return idx.addObject(body, v4()).then(pending => pending.objectID);
 };
 
-export const remove = id => {
-  return index.deleteObject(id);
+export const remove = (id, idx = index) => {
+  return idx.deleteObject(id);
 };
