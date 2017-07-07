@@ -13,17 +13,16 @@ Clone the repository and then run the following command:
 npm install
 ```
 
-The next step is to create the `config.json` file:
-
-```
-cp config.json.dist config.json
-```
-
-Fill the missing property `ALGOLIA_APP_ID` and `ALGOLIA_API_KEY` (grab this informations from your account).
-
 ## Run the application
 
-- For run the dev application and launch a server in watch mode on `localhost:8080`:
+- For run the dev application, you should create the `.env` file:
+
+```
+cp .env.dist .env
+```
+
+Fill the missing property `ALGOLIA_APP_ID` and `ALGOLIA_API_KEY` (grab this informations from your account).  
+Then you can launch the server in watch mode on `localhost:8080`:
 
 ```
 npm start
@@ -32,7 +31,7 @@ npm start
 - For run the production application and launch a server on `localhost:8080`:
 
 ```
-npm run build && npm run serve
+npm run build && ALGOLIA_APP_ID=YOUR_APP_ID ALGOLIA_API_KEY=YOUR_API_KEY npm run serve
 ```
 
 ## Run the test for the application
