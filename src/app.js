@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import apps from './apps/routes';
 
-const version = process.env.API_VERSION || 1;
+const version = 1;
 const endpoint = `/api/${version}`;
 
 const app = express();
@@ -14,6 +14,9 @@ app.disable('x-powered-by');
 // Middlewares
 app.use(bodyParser.json());
 app.use(cors());
+
+// Route
+app.get(endpoint, (_, res) => res.json({ version }));
 
 // Router
 app.use(`${endpoint}/apps`, apps);

@@ -9,95 +9,108 @@ jest.mock('apps/model', () => ({
 }));
 
 describe('app', () => {
-  describe('/apps', () => {
-    describe('POST - /', () => {
-      it('expect to return a success response', () => {
-        expect.assertions(2);
+  it('expect to return current version', () => {
+    expect.assertions(2);
 
-        const body = {
-          category: 'Games',
-          rating: 3,
-        };
+    const expectation = {
+      version: 1,
+    };
 
-        const expectation = {
-          objectID: 'SOME_RANDOM_ID',
-        };
+    return supertest(app)
+    .get('/api/1')
+    .then(res => {
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expectation);
+    });
+  });
 
-        model.validate.mockImplementationOnce(body => Promise.resolve(body));
-        model.create.mockImplementationOnce(() => Promise.resolve('SOME_RANDOM_ID'));
+  describe('POST - /apps', () => {
+    it('expect to return a success response', () => {
+      expect.assertions(2);
 
-        return supertest(app)
-          .post('/api/1/apps')
-          .send(body)
-          .set('Accept', 'application/json')
-          .then(res => {
-            expect(res.status).toBe(201);
-            expect(res.body).toEqual(expectation);
-          });
-      });
+      const body = {
+        category: 'Games',
+        rating: 3,
+      };
 
-      it('expect to return a fail response', () => {
-        expect.assertions(2);
+      const expectation = {
+        objectID: 'SOME_RANDOM_ID',
+      };
 
-        const body = {
-          category: 'Games',
-          rating: 3,
-        };
+      model.validate.mockImplementationOnce(body => Promise.resolve(body));
+      model.create.mockImplementationOnce(() => Promise.resolve('SOME_RANDOM_ID'));
 
-        const error = {
-          name: 'AlgoliaError',
-          message: 'Oops, an error has occurred',
-        };
-
-        model.validate.mockImplementationOnce(() => Promise.reject(error));
-
-        return supertest(app)
-          .post('/api/1/apps')
-          .send(body)
-          .set('Accept', 'application/json')
-          .then(res => {
-            expect(res.status).toBe(400);
-            expect(res.body).toEqual(error);
-          });
-      });
+      return supertest(app)
+        .post('/api/1/apps')
+        .send(body)
+        .set('Accept', 'application/json')
+        .then(res => {
+          expect(res.status).toBe(201);
+          expect(res.body).toEqual(expectation);
+        });
     });
 
-    describe('DELETE - /:id', () => {
-      it('expect to return a success response', () => {
-        expect.assertions(1);
+    it('expect to return a fail response', () => {
+      expect.assertions(2);
 
-        const id = 'SOME_RANDOM_ID';
+      const body = {
+        category: 'Games',
+        rating: 3,
+      };
 
-        model.remove.mockImplementationOnce(() => Promise.resolve());
+      const error = {
+        name: 'AlgoliaError',
+        message: 'Oops, an error has occurred',
+      };
 
-        return supertest(app)
-          .delete(`/api/1/apps/${id}`)
-          .set('Accept', 'application/json')
-          .then(res => {
-            expect(res.status).toBe(204);
-          });
-      });
+      model.validate.mockImplementationOnce(() => Promise.reject(error));
 
-      it('expect to return a fail response', () => {
-        expect.assertions(2);
+      return supertest(app)
+        .post('/api/1/apps')
+        .send(body)
+        .set('Accept', 'application/json')
+        .then(res => {
+          expect(res.status).toBe(400);
+          expect(res.body).toEqual(error);
+        });
+    });
+  });
 
-        const id = 'SOME_RANDOM_ID';
+  describe('DELETE - /apps/:id', () => {
+    it('expect to return a success response', () => {
+      expect.assertions(1);
 
-        const error = {
-          name: 'AlgoliaError',
-          message: 'Oops, an error has occurred',
-        };
+      const id = 'SOME_RANDOM_ID';
 
-        model.remove.mockImplementationOnce(() => Promise.reject(error));
+      model.remove.mockImplementationOnce(() => Promise.resolve());
 
-        return supertest(app)
-          .delete(`/api/1/apps/${id}`)
-          .set('Accept', 'application/json')
-          .then(res => {
-            expect(res.status).toBe(400);
-            expect(res.body).toEqual(error);
-          });
-      });
+      return supertest(app)
+        .delete(`/api/1/apps/${id}`)
+        .set('Accept', 'application/json')
+        .then(res => {
+          expect(res.status).toBe(204);
+        });
+    });
+
+    it('expect to return a fail response', () => {
+      expect.assertions(2);
+
+      const id = 'SOME_RANDOM_ID';
+
+      const error = {
+        name: 'AlgoliaError',
+        message: 'Oops, an error has occurred',
+      };
+
+      model.remove.mockImplementationOnce(() => Promise.reject(error));
+
+      return supertest(app)
+        .delete(`/api/1/apps/${id}`)
+        .set('Accept', 'application/json')
+        .then(res => {
+          expect(res.status).toBe(400);
+          expect(res.body).toEqual(error);
+        });
     });
   });
 });
