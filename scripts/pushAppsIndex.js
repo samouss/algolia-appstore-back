@@ -1,11 +1,15 @@
+import 'src/env';
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
 import yargs from 'yargs';
 import algoliasearch from 'algoliasearch';
-import { ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_APPS_INDEX_NAME } from 'configuration';
 
 const { input } = yargs.argv;
+
+const appId = process.env.ALGOLIA_APP_ID || 'APP_ID';
+const apiKey = process.env.ALGOLIA_API_KEY || 'API_KEY';
+const indexName = 'apps';
 
 // Input validation
 if (!input) {
@@ -18,29 +22,27 @@ if (!fs.existsSync(input)) {
 
 const inputPath = path.resolve(input);
 const data = JSON.parse(fs.readFileSync(inputPath));
-const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
-const index = client.initIndex(ALGOLIA_APPS_INDEX_NAME);
+const client = algoliasearch(appId, apiKey);
+const index = client.initIndex(indexName);
 
 console.log();
 console.log(chalk`{blue > Progress!}`);
-console.log(chalk`> Upload of "{bold ${ALGOLIA_APPS_INDEX_NAME}}" begin...`);
+console.log(chalk`> Upload of "{bold ${indexName}}" begin...`);
 console.log();
 
 index.addObjects(data).then(() => {
-  client.destroy();
-
   console.log();
   console.log(chalk`{green > Success!}`);
-  console.log(chalk`> Records of "{bold ${ALGOLIA_APPS_INDEX_NAME}}" will change in couple of seconds.`);
+  console.log(chalk`> Records of "{bold ${indexName}}" will change in couple of seconds.`);
   console.log(`> ${inputPath}`);
   console.log();
 }).catch(error => {
-  client.destroy();
-
   console.log();
   console.log(chalk`{red > Error!}`);
-  console.log(chalk`> Oops, an error has occurred during upload of "{bold ${ALGOLIA_APPS_INDEX_NAME}}".`);
+  console.log(chalk`> Oops, an error has occurred during upload of "{bold ${indexName}}".`);
   console.log();
   console.log(error);
   console.log();
+}).then(() => {
+  client.destroy();
 });

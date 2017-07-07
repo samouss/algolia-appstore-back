@@ -3,7 +3,6 @@ import path from 'path';
 import chalk from 'chalk';
 import yargs from 'yargs';
 import { v4 } from 'uuid';
-import { ALGOLIA_APPS_INDEX_NAME } from 'configuration';
 import { formatDataWith } from './utils';
 
 const { input, output } = yargs.argv;
@@ -43,6 +42,6 @@ fs.writeFileSync(
 
 console.log();
 console.log(chalk`{green > Success!}`);
-console.log(chalk`> The JSON file for "{bold ${ALGOLIA_APPS_INDEX_NAME}}" has correctly be generated:`);
+console.log(chalk`> The JSON file for "{bold apps}" has correctly be generated:`);
 console.log(`> ${outputPath}`);
 console.log();
