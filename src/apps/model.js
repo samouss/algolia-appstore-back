@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { v4 } from 'uuid';
 import { ALGOLIA_APPS_INDEX_NAME } from 'configuration';
 import { validateSchemaToPromise } from 'core/validation';
-import client from 'core/algolia';
+import client, { handleError } from 'core/algolia';
 
 const index = client.initIndex(ALGOLIA_APPS_INDEX_NAME);
 
@@ -21,9 +21,19 @@ export const validate = validateSchemaToPromise(schema, {
 });
 
 export const create = (body, idx = index) => {
-  return idx.addObject(body, v4()).then(pending => pending.objectID);
+  return idx.addObject(body, v4())
+    .then(pending => {
+      client.destroy();
+
+      return pending.objectID;
+    })
+    .catch(error => handleError(client, error));
 };
 
 export const remove = (id, idx = index) => {
-  return idx.deleteObject(id);
+  return idx.deleteObject(id)
+    .then(() => {
+      client.destroy();
+    })
+    .catch(error => handleError(client, error));
 };
