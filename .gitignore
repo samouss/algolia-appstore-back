@@ -4,5 +4,5 @@
 
 # Files
 npm-debug.log
-config.json
+.env
 .DS_Store

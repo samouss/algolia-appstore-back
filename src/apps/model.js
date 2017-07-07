@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import { v4 } from 'uuid';
-import { ALGOLIA_APPS_INDEX_NAME } from 'configuration';
 import { validateSchemaToPromise } from 'core/validation';
 import client, { handleError } from 'core/algolia';
 
@@ -14,7 +13,7 @@ const schema = Joi.object({
   price: Joi.string().required(),
 });
 
-const index = client.initIndex(ALGOLIA_APPS_INDEX_NAME);
+const index = client.initIndex('apps');
 
 export const validate = validateSchemaToPromise(schema, {
   abortEarly: false,

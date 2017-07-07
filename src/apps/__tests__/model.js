@@ -14,7 +14,7 @@ jest.mock('uuid', () => ({
 describe('apps', () => {
   describe('model', () => {
     it('expect to call initIndex', () => {
-      expect(client.initIndex).toHaveBeenCalledWith('indexName');
+      expect(client.initIndex).toHaveBeenCalledWith('apps');
     });
 
     describe('validate', () => {

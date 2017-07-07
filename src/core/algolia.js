@@ -1,5 +1,7 @@
 import algoliasearch from 'algoliasearch';
-import { ALGOLIA_APP_ID, ALGOLIA_API_KEY } from 'configuration';
+
+const appId = process.env.ALGOLIA_APP_ID || 'APP_ID';
+const apiKey = process.env.ALGOLIA_API_KEY || 'API_KEY';
 
 export const handleError = (client, error) => {
   client.destroy();
@@ -10,4 +12,4 @@ export const handleError = (client, error) => {
   });
 };
 
-export default algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
+export default algoliasearch(appId, apiKey);
