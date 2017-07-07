@@ -13,6 +13,14 @@ Clone the repository and then run the following command:
 npm install
 ```
 
+The next step is to create the `config.json` file:
+
+```
+cp config.json.dist config.json
+```
+
+Fill the missing property `ALGOLIA_APP_ID` and `ALGOLIA_API_KEY` (grab this informations from your account).
+
 ## Run the application
 
 - For run the dev application and launch a server in watch mode on `localhost:8080`:
