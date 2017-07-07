@@ -11,7 +11,8 @@
     "babel": "babel src --out-dir dist --ignore __tests__",
     "babel-node": "babel-node",
     "test": "jest",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "heroku-postbuild": "npm i --only=dev && npm run build"
   },
   "repository": {
     "type": "git",
