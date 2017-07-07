@@ -1,7 +1,7 @@
 
 # Algolia AppStore Back
 
-[![dependencies Status](https://david-dm.org/samouss/algolia-appstore-back/status.svg)](https://david-dm.org/samouss/algolia-appstore-back) [![devDependencies Status](https://david-dm.org/samouss/algolia-appstore-back/dev-status.svg)](https://david-dm.org/samouss/algolia-appstore-back?type=dev)
+[![Build Status](https://travis-ci.org/samouss/algolia-appstore-back.svg?branch=master)](https://travis-ci.org/samouss/algolia-appstore-back) [![dependencies Status](https://david-dm.org/samouss/algolia-appstore-back/status.svg)](https://david-dm.org/samouss/algolia-appstore-back) [![devDependencies Status](https://david-dm.org/samouss/algolia-appstore-back/dev-status.svg)](https://david-dm.org/samouss/algolia-appstore-back?type=dev)
 
 Micro back end to interact with Algolia indexes, built with Express, Babel, Jest.
 
