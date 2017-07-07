@@ -7,10 +7,6 @@ jest.mock('core/algolia', () => ({
   destroy: jest.fn(),
 }));
 
-jest.mock('configuration', () => ({
-  ALGOLIA_APPS_INDEX_NAME: 'indexName',
-}));
-
 jest.mock('uuid', () => ({
   v4: () => 'SOME_RANDOM_ID',
 }));

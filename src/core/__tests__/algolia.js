@@ -5,11 +5,6 @@ jest.mock('algoliasearch', () => jest.fn(() => ({
   fakeApi: 'sample',
 })));
 
-jest.mock('configuration', () => ({
-  ALGOLIA_APP_ID: 'APP_ID',
-  ALGOLIA_API_KEY: 'API_KEY',
-}));
-
 describe('algolia', () => {
   describe('singleton', () => {
     it('expect to return an instance of algolia client', () => {
