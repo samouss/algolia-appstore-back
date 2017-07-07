@@ -1,6 +1,6 @@
 ## API
 
-### GET: /api/{VERSION}
+### - GET: /api/1
 
 Will return the current version of the API.
 
@@ -18,7 +18,7 @@ curl -X GET \
 HTTP/1.1 200 OK: {"version":1}
 ```
 
-### POST: /api/{VERSION}/apps
+### - POST: /api/1/apps
 
 Will add the given object to the `apps` index.
 Return the `objectID` of the inserted record.
@@ -39,7 +39,7 @@ curl -X POST \
 HTTP/1.1 201 Created: {"objectID":"2da65bd6-dbda-472d-adac-faf96f331349"}
 ```
 
-### DELETE: /api/{VERSION}/apps/:id
+### - DELETE: /api/1/apps/:id
 
 Will delete the given objectID from the `apps` index.
 
