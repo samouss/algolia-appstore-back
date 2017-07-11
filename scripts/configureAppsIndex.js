@@ -14,8 +14,8 @@ index.setSettings({
     'name',
   ],
   attributesForFaceting: [
-    'filterOnly(category)',
-    'filterOnly(rating)',
+    'category',
+    'rating',
   ],
   customRanking: [
     'desc(rating)',
