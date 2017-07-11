@@ -26,8 +26,14 @@ const addObjectIDToRecord = record => ({
   objectID: v4(),
 });
 
+const updateCurrencyFormat = record => ({
+  ...record,
+  price: record.price.replace('USD', '$'),
+});
+
 const formatter = formatDataWith(
   addObjectIDToRecord,
+  updateCurrencyFormat,
 );
 
 const inputPath = path.resolve(input);
