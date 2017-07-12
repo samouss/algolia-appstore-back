@@ -13,7 +13,7 @@ const schema = Joi.object({
   price: Joi.string().required(),
 });
 
-const index = client.initIndex('apps');
+const index = client.initIndex('apps_rating_desc');
 
 export const validate = validateSchemaToPromise(schema, {
   abortEarly: false,
