@@ -11,23 +11,28 @@ const client = algoliasearch(appId, apiKey);
 const indexDesc = client.initIndex(appsIndexDesc);
 
 indexDesc.setSettings({
-  searchableAttributes: [
-    'name',
-  ],
-  attributesForFaceting: [
-    'category',
-    'rating',
-  ],
-  customRanking: [
-    'desc(rating)',
-    'desc(ratingCount)',
-  ],
-  attributesToHighlight: [
-    'name',
-  ],
   replicas: [
     'apps_rating_asc',
   ],
+}).then(() => {
+  return indexDesc.setSettings({
+    searchableAttributes: [
+      'name',
+    ],
+    attributesForFaceting: [
+      'category',
+      'rating',
+    ],
+    customRanking: [
+      'desc(rating)',
+      'desc(ratingCount)',
+    ],
+    attributesToHighlight: [
+      'name',
+    ],
+  }, {
+    forwardToReplicas: true,
+  });
 }).then(() => {
   const indexAsc = client.initIndex(appsIndexAsc);
 
