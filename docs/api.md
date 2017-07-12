@@ -20,7 +20,7 @@ HTTP/1.1 200 OK: {"version":1}
 
 ### - POST: /api/1/apps
 
-Will add the given object to the `apps` index.
+Will add the given object to the `apps_rating_desc` index.
 Return the `objectID` of the inserted record.
 
 - Request:
@@ -41,7 +41,7 @@ HTTP/1.1 201 Created: {"objectID":"2da65bd6-dbda-472d-adac-faf96f331349"}
 
 ### - DELETE: /api/1/apps/:id
 
-Will delete the given objectID from the `apps` index.
+Will delete the given objectID from the `apps_rating_desc` index.
 
 - Request:
 
