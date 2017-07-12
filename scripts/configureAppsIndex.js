@@ -4,12 +4,13 @@ import algoliasearch from 'algoliasearch';
 
 const appId = process.env.ALGOLIA_APP_ID || 'APP_ID';
 const apiKey = process.env.ALGOLIA_API_KEY || 'API_KEY';
-const indexName = 'apps';
+const appsIndexDesc = 'apps_rating_desc';
+const appsIndexAsc = 'apps_rating_asc';
 
 const client = algoliasearch(appId, apiKey);
-const index = client.initIndex(indexName);
+const indexDesc = client.initIndex(appsIndexDesc);
 
-index.setSettings({
+indexDesc.setSettings({
   searchableAttributes: [
     'name',
   ],
@@ -24,15 +25,27 @@ index.setSettings({
   attributesToHighlight: [
     'name',
   ],
+  replicas: [
+    'apps_rating_asc',
+  ],
+}).then(() => {
+  const indexAsc = client.initIndex(appsIndexAsc);
+
+  return indexAsc.setSettings({
+    customRanking: [
+      'asc(rating)',
+      'desc(ratingCount)',
+    ],
+  });
 }).then(() => {
   console.log();
   console.log(chalk`{green > Success!}`);
-  console.log(chalk`> Settings of "{bold ${indexName}}" will change in couple of seconds.`);
+  console.log(chalk`> Settings of "{bold ${appsIndexDesc}}" will change in couple of seconds.`);
   console.log();
 }).catch(error => {
   console.log();
   console.log(chalk`{red > Error!}`);
-  console.log(chalk`> Oops, an error has occurred during configuration of "{bold ${indexName}}".`);
+  console.log(chalk`> Oops, an error has occurred during configuration of "{bold ${appsIndexDesc}}".`);
   console.log();
   console.log(error);
   console.log();
