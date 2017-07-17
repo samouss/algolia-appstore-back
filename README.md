@@ -47,7 +47,7 @@ npm test
 For run in watch mode:
 
 ```
-npm test:watch
+npm run test:watch
 ```
 
 ## Documentation
